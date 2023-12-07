@@ -1,23 +1,28 @@
-#include "main.h"
+#include "shell.h"
 
 /**
- * execute_command - execute inputted command.
- * @command: is the command to execute
+ * execute_cmd - Execute the given command.
+ * @command: An array of strings containing the command and its arguments.
+ *
+ * Description: This function forks a new process,
+ * to execute the provided command and waits for its completion.
  */
-void execute_command(char *command)
+void execute_cmd(char **command)
 {
 	pid_t pid = fork();
 
 	if (pid == -1)
 	{
-		handle_error("fork");
+		perror("Fork failed");
+		exit(EXIT_FAILURE);
 	}
 
 	if (pid == 0)
 	{
-		if (execlp(command, command, (char *) 0) == -1)
+		if (execvp(command[0], command) == -1)
 		{
-			handle_error("execlp");
+			perror("Command execution failed");
+			exit(EXIT_FAILURE);
 		}
 	}
 	else
@@ -26,7 +31,8 @@ void execute_command(char *command)
 
 		if (waitpid(pid, &status, 0) == -1)
 		{
-			handle_error("waitpid");
+			perror("Waitpid failed");
+			exit(EXIT_FAILURE);
 		}
 	}
 }

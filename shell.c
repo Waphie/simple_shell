@@ -1,33 +1,33 @@
-#include "main.h"
+#include "shell.h"
 
 /**
- * main - entry point of the shell program
+ * main - Entry point of the program.
  *
- * Return: (0) Always
+ * Return: (0) on Success
  */
 int main(void)
 {
-	char command[1024];
-	size_t size = sizeof(command);
+	char *line;
+	char **command;
 
 	while (1)
 	{
 		printf("$ ");
-		read_cmd(command, size);
+		fflush(stdout);
 
-		if (strcmp(command, "exit") == 0)
+		line = read_cmd();
+		if (feof(stdin))
 		{
+			printf("\n");
+			free(line);
 			break;
 		}
 
-		if (access(command, X_OK) == -1)
-		{
-			printf("Command not found or not executable\n");
-		}
-		else
-		{
-			execute_command(command);
-		}
+		command = parse_cmd(line);
+		execute_cmd(command);
+
+		free(line);
+		free(command);
 	}
 
 	return (0);
