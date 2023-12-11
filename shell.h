@@ -9,9 +9,24 @@
 #include <sys/wait.h>
 
 #define BUFFSIZE 1024
+#define INIT_SIZE 100
+#define EXP_FACTOR 4
+
+extern char **environ;
 
 void execute_cmd(char **command);
+
+/*     errors     */
+void handle_error(const char *msg);
+
+/*     parsing    */
 char **parse_cmd(char *line);
+
+/*     inputs     */
 char *read_cmd();
+char *my_getline(FILE *stream);
+
+/* function declarations */
+void fetch_env(char *env_name);
 
 #endif

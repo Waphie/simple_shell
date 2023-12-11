@@ -12,10 +12,10 @@ int main(void)
 
 	while (1)
 	{
-		printf("$ ");
+		printf("$ "); /*prompt to be displayed: $ */
 		fflush(stdout);
 
-		line = read_cmd();
+		line = my_getline(stdin);
 		if (feof(stdin))
 		{
 			printf("\n");
@@ -24,7 +24,21 @@ int main(void)
 		}
 
 		command = parse_cmd(line);
-		execute_cmd(command);
+		if (strcmp(command[0], "fetch_env") == 0)
+		{
+			if (command[1] != NULL)
+			{
+				fetch_env(command[1]);
+			}
+			else
+			{
+				printf("Usage: fetch_env<environment_variable>\n");
+			}
+		}
+		else
+		{
+			execute_cmd(command);
+		}
 
 		free(line);
 		free(command);

@@ -13,16 +13,14 @@ void execute_cmd(char **command)
 
 	if (pid == -1)
 	{
-		perror("Fork failed");
-		exit(EXIT_FAILURE);
+		handle_error("Fork failed");
 	}
 
 	if (pid == 0)
 	{
 		if (execvp(command[0], command) == -1)
 		{
-			perror("Command execution failed");
-			exit(EXIT_FAILURE);
+			handle_error("Command execution failed");
 		}
 	}
 	else
@@ -31,8 +29,7 @@ void execute_cmd(char **command)
 
 		if (waitpid(pid, &status, 0) == -1)
 		{
-			perror("Waitpid failed");
-			exit(EXIT_FAILURE);
+			handle_error("Waitpid failed");
 		}
 	}
 }
