@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /*
- * my_getline - Reads a line from the specified stream & dynamically allocates memory,
- * to store the characters of the line.
+ * my_getline - Reads a line from the specified stream & dynamically,
+ * allocates memory to store the characters of the line.
  * @stream: A pointer to the FILE stream which is read.
  *
  * Returns: A pointer to the dynamically allocated buffer
@@ -11,8 +11,7 @@ char *my_getline(FILE *stream)
 {
 	size_t size = INIT_SIZE;
 	char *buffsize = malloc(size * sizeof(char));
-	char *cursor = buffsize;
-	char *temp = NULL;
+	char *cursor = buffsize, *temp = NULL;
 	size_t length = 0;
 
 	if (buffsize == NULL)
@@ -23,6 +22,7 @@ char *my_getline(FILE *stream)
 	while (1)
 	{
 		char c = fgetc(stream);
+
 		if (c == EOF || c == '\n')
 		{
 			break;
@@ -47,5 +47,5 @@ char *my_getline(FILE *stream)
 	}
 
 	*cursor = '\0';
-	return buffsize;
+	return (buffsize);
 }
