@@ -14,6 +14,25 @@ char *read_cmd()
 	char *line = NULL;
 	size_t buffsize = 0;
 
-	getline(&line, &buffsize, stdin);
+	ssize_t n = getline(&line, &buffsize, stdin);
+	if (n == -1)
+	{
+		if (feof(stdin))    /*Input stream has reached the end */
+		{
+			return (NULL);
+		}
+		else    /*An error has occurred while reading from stdin */
+		{
+			handle_error("getline");
+		}
+	}
+
+	if (n == 0)
+	{
+		return (calloc(1, sizeof(char)));
+	}
+	/*We remove the newline character from the input line */
+	line[n - 1] = '\0';
+
 	return (line);
 }
