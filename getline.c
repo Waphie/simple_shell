@@ -1,11 +1,12 @@
 #include "shell.h"
 
-/*
+/**
  * my_getline - Reads a line from the specified stream & dynamically,
  * allocates memory to store the characters of the line.
  * @stream: A pointer to the FILE stream which is read.
  *
- * Returns: A pointer to the dynamically allocated buffer
+ * Return: A pointer to the dynamically allocated buffsize
+ * or NULL if memory allocation fails or EOF is encountered
  */
 char *my_getline(FILE *stream)
 {

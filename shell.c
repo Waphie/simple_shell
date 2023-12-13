@@ -32,7 +32,7 @@ int main(void)
 			}
 			else
 			{
-				printf("Usage: fetch_env<environment_variable>\n");
+				printf("Usage: fetch_env <environment_variable>\n");
 			}
 		}
 		else
