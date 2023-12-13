@@ -1,5 +1,10 @@
+#ifndef BETTY_H
+#define BETTY_H
+
+
+
 #include <stdio.h>
-#include "main.h"
+#include "shared.h"
 
 /**
  * betty_main - Main function for betty
@@ -19,10 +24,10 @@ void betty_main(void)
 
 int main(void)
 {
-	for (; ;)
-	{
-		printf("Bettttttty proud\n");
-			break;
-	}
+		for (; ;)
+		{
+			printf("Bettttttty proud\n");
+				break;
+		}
 return (0);
 }
