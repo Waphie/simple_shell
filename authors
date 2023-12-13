@@ -1,9 +1,9 @@
 Siwa files
 -
--
--
+shellstrtok.h	betty.h		shared.h	README.md
 
 Wandile files
 -
 -
-
+execute.c    getline.c          hsh       main.h     shell.c
+fetch_env.c  handling_errors.c  inputs.c  parsing.c    shell.h
